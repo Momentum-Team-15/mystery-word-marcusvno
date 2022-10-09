@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import string
+# import string (used for translate method)
+import re
 from collections import Counter
 
 STOP_WORDS = [
@@ -13,11 +14,15 @@ def print_word_freq(file):
         # read the target file and convert to string
         txt_string = target.read()
 
+        # removes punctuation from string using translate. Has issues with em/en-dashes # noqa
+        # txt_string = txt_string.translate(str.maketrans('', '', string.punctuation)).casefold() # noqa
+
+        # remove punctuation but first keeps words with apostrophes together (to avoid orphaned 's') and then replaces remaining punctuation with spaces (to deal with dashes) # noqa
+        txt_string = txt_string.replace("'", "")
+        txt_string = re.sub(r'[^\w\s]', ' ', txt_string)
+
         # strip string of end white space
         txt_string = txt_string.strip()
-
-        # removes punctuation from string
-        txt_string = txt_string.translate(str.maketrans('', '', string.punctuation)).casefold() # noqa
 
         # transforms string into list to be counted and sorted
         txt_list = txt_string.split()
