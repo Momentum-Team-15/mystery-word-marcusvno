@@ -18,7 +18,7 @@ def print_word_freq(file):
         # txt_string = txt_string.translate(str.maketrans('', '', string.punctuation)).casefold() # noqa
 
         # remove punctuation but first keeps words with apostrophes together (to avoid orphaned 's') and then replaces remaining punctuation with spaces (to deal with dashes) # noqa
-        txt_string = txt_string.replace("'", "")
+        txt_string = txt_string.replace("’", "")
         txt_string = re.sub(r'[^\w\s]', ' ', txt_string)
 
         # strip string of whitespace and lowercases text
