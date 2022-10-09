@@ -10,14 +10,28 @@ STOP_WORDS = [
 def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
     with open(file) as target:
+        # read the target file and convert to string
         txt_string = target.read()
+
+        # strip string of end white space
         txt_string = txt_string.strip()
+
+        # removes punctuation from string
         txt_string = txt_string.translate(str.maketrans('', '', string.punctuation)).casefold() # noqa
+
+        # transforms string into list to be counted and sorted
         txt_list = txt_string.split()
 
+        # creates new list removing all the STOP_WORDS
         new_list = [word for word in txt_list if word not in STOP_WORDS]
+
+        # creates dictionary with frequency of unique words
         counts = Counter(new_list)
+
+        # creates new dictionary with descending order of value
         count_ordered = dict(sorted(counts.items(), key=lambda x: x[1], reverse=True)) # noqa
+
+        # Formats print statement to reqs
         for key, value in count_ordered.items():
             counter_mark = ''
             i = 0
