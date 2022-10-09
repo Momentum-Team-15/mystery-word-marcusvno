@@ -30,7 +30,7 @@ def print_word_freq(file):
         # creates new list removing all the STOP_WORDS
         new_list = [word for word in txt_list if word not in STOP_WORDS]
 
-        # creates dictionary with frequency of unique words
+        # creates dictionary and counts frequency of unique words
         counts = Counter(new_list)
 
         # creates new dictionary with descending order of value
