@@ -21,8 +21,8 @@ def print_word_freq(file):
         txt_string = txt_string.replace("'", "")
         txt_string = re.sub(r'[^\w\s]', ' ', txt_string)
 
-        # strip string of end white space
-        txt_string = txt_string.strip()
+        # strip string of whitespace and lowercases text
+        txt_string = txt_string.strip().casefold()
 
         # transforms string into list to be counted and sorted
         txt_list = txt_string.split()
